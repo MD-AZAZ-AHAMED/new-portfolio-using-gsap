@@ -71,3 +71,23 @@ function scrollToSection(id) {
 
 gsap.from(".animated-text", { opacity: 0, y: 20, duration: 1.2 });
 
+gsap.from(".about-image", {
+  scrollTrigger: {
+    trigger: ".about",
+    start: "top 80%",
+  },
+  opacity: 0,
+  x: -100,
+  duration: 1
+});
+
+gsap.from(".about-text", {
+  scrollTrigger: {
+    trigger: ".about",
+    start: "top 80%",
+  },
+  opacity: 0,
+  x: 100,
+  duration: 1,
+  delay: 0.3
+});
