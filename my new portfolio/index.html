@@ -65,26 +65,48 @@ h2 {
 
 /* About */
 .about {
-  padding: 4rem 2rem;
-  background: rgba(255, 255, 255, 0.05);
-  backdrop-filter: blur(10px);
-  border-radius: 12px;
-  margin: 2rem;
+  padding: 3rem 2rem;
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(8px);
+  border-radius: 16px;
+  margin: 2rem auto;
+  max-width: 1000px;
+  color: #fff;
 }
 
-.about-content {
+.about h2 {
+  text-align: center;
+  margin-bottom: 2rem;
+  font-size: 2rem;
+  color: #00ffe0;
+}
+
+.about-wrapper {
   display: flex;
   flex-wrap: wrap;
-  align-items: center;
   gap: 2rem;
+  align-items: center;
   justify-content: center;
 }
 
-.about-content img {
-  width: 150px;
+.about-image img {
+  width: 240px;
+  height: 240px;
   border-radius: 50%;
-  box-shadow: 0 0 15px #00ffe0;
+  border: 3px solid #00ffe0;
+  object-fit: cover;
+  box-shadow: 0 0 30px #00ffe040;
 }
+
+.about-text {
+  max-width: 600px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 1rem;
+  font-weight: 300;
+  line-height: 1.6;
+  text-align: justify;
+}
+
 
 /* Projects */
 .projects {
@@ -392,13 +414,27 @@ h2 {
   </header>
 
   <!-- About Section -->
-  <section class="about" id="about">
-    <h2>About Me</h2>
-    <div class="about-content">
-      <img src="assets/img/avatar.png" alt="Azaz Photo">
-      <p>Hello! I'm a developer with a passion for building futuristic web experiences using JavaScript, AI, and animation.</p>
+<section class="about" id="about">
+  <h2>About Me</h2>
+  <div class="about-wrapper">
+    <div class="about-image">
+      <img src="assets/profile-pic.png" alt="Azaz Ahamed" />
     </div>
-  </section>
+    <div class="about-text">
+      <p>
+        Hello! I'm <strong>Azaz Ahamed</strong>, a passionate front-end developer
+        who blends design with intelligent interactivity. I create futuristic,
+        AI-powered web experiences using <strong>JavaScript</strong>, <strong>GSAP</strong>,
+        and <strong>OpenAI</strong>.
+      </p>
+      <p>
+        My mission is to craft sleek, accessible, and meaningful digital interfaces
+        that feel alive and useful. I love building with animation, APIs, and modern UX.
+      </p>
+    </div>
+  </div>
+</section>
+
 
   <!-- Projects Section -->
 <section class="projects" id="projects">
