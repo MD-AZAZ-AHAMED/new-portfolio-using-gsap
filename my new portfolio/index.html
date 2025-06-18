@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MD.AZAZ AHAMED | AI Portfolio</title>
+  <link rel="stylesheet" href="css/styles.css" />
+  <script src="js/chatbot.js"></script>
+  <script src="js/main.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    /* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Orbitron', sans-serif;
+  background: #0d0d2b;
+  color: #ffffff;
+  line-height: 1.6;
+  scroll-behavior: smooth;
+}
+
+/* Container */
+.container {
+  max-width: 1100px;
+  margin: auto;
+  padding: 2rem;
+}
+
+/* Section Titles */
+h2 {
+  text-align: center;
+  margin-bottom: 1rem;
+  font-size: 2rem;
+  color: #00ffe0;
+}
+
+/* Hero */
+.hero {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background: url('../assets/img/hero-bg.png') center/cover no-repeat;
+  position: relative;
+}
+
+.glow {
+  font-size: 3rem;
+  color: #00ffe0;
+  text-shadow: 0 0 10px #00ffe0, 0 0 20px #00ffe0;
+}
+
+.animated-text {
+  font-size: 1.2rem;
+  margin-top: 1rem;
+  color: #fff;
+  opacity: 0.8;
+}
+
+/* About */
+.about {
+  padding: 4rem 2rem;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  border-radius: 12px;
+  margin: 2rem;
+}
+
+.about-content {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 2rem;
+  justify-content: center;
+}
+
+.about-content img {
+  width: 150px;
+  border-radius: 50%;
+  box-shadow: 0 0 15px #00ffe0;
+}
+
+/* Projects */
+.projects {
+  padding: 4rem 2rem;
+}
+
+.project-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+}
+
+.project-card {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(0, 255, 224, 0.1);
+  padding: 1rem;
+  border-radius: 12px;
+  text-align: center;
+  transition: transform 0.3s ease;
+  backdrop-filter: blur(8px);
+}
+
+.project-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 15px #00ffe0;
+}
+
+.project-card img {
+  width: 100%;
+  border-radius: 10px;
+}
+
+/* Skills */
+.skills {
+  padding: 4rem 2rem;
+}
+
+.skills-list {
+  max-width: 600px;
+  margin: auto;
+}
+
+.skill {
+  margin-bottom: 1rem;
+}
+
+.skill span {
+  display: block;
+  margin-bottom: 0.3rem;
+  color: #00ffe0;
+}
+
+.bar {
+  height: 10px;
+  background: #222;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.bar::after {
+  content: '';
+  display: block;
+  height: 100%;
+  background: linear-gradient(to right, #00ffe0, #ff00c8);
+  width: 80%;
+  animation: growBar 1.2s ease forwards;
+}
+
+.bar.js::after { width: 90%; }
+.bar.html::after { width: 95%; }
+.bar.gsap::after { width: 80%; }
+.bar.api::after { width: 75%; }
+
+@keyframes growBar {
+  from { width: 0; }
+  to { width: 100%; }
+}
+
+/* Contact */
+.contact {
+  padding: 4rem 2rem;
+  text-align: center;
+}
+
+.contact form {
+  max-width: 600px;
+  margin: auto;
+  display: grid;
+  gap: 1rem;
+}
+
+.contact input, .contact textarea {
+  padding: 0.8rem;
+  border: none;
+  border-radius: 8px;
+  background: #111;
+  color: #fff;
+  resize: none;
+}
+
+.contact button {
+  background: #00ffe0;
+  border: none;
+  padding: 0.8rem;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  color: #000;
+  transition: background 0.3s ease;
+}
+
+.contact button:hover {
+  background: #ff00c8;
+  color: #fff;
+}
+
+/* Chatbot Button */
+.chatbot-button {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  background: #00ffe0;
+  color: #000;
+  font-size: 1.5rem;
+  padding: 1rem;
+  border-radius: 50%;
+  box-shadow: 0 0 20px #00ffe0;
+  cursor: pointer;
+  z-index: 1000;
+  transition: transform 0.2s ease;
+}
+
+.chatbot-button:hover {
+  transform: scale(1.1);
+}
+
+.animated-text {
+  font-size: 1.4rem;
+  color: #00ffe0;
+  text-shadow: 0 0 8px #00ffe0, 0 0 20px #00ffe0;
+  margin-top: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  height: 40px;
+}
+
+.cursor {
+  color: #00ffe0;
+  font-weight: bold;
+  animation: blink 0.7s infinite;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+/* Chatbot Panel */
+.chatbot-panel {
+  position: fixed;
+  bottom: 100px;
+  right: 30px;
+  width: 300px;
+  max-height: 400px;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(12px);
+  border-radius: 16px;
+  box-shadow: 0 0 20px #00ffe0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  transform: scale(0);
+  opacity: 0;
+  z-index: 1001;
+}
+
+.chatbot-header {
+  background: #00ffe0;
+  color: #000;
+  padding: 10px;
+  font-weight: bold;
+  display: flex;
+  justify-content: space-between;
+}
+
+.chatbot-body {
+  flex: 1;
+  padding: 10px;
+  overflow-y: auto;
+  font-size: 0.9rem;
+}
+
+.bot-message, .user-message {
+  margin: 8px 0;
+  padding: 10px;
+  border-radius: 10px;
+  max-width: 90%;
+  animation: fadeIn 0.4s ease;
+}
+
+.bot-message {
+  background: rgba(0, 255, 224, 0.1);
+  color: #00ffe0;
+  align-self: flex-start;
+}
+
+.user-message {
+  background: rgba(255, 255, 255, 0.08);
+  color: #fff;
+  align-self: flex-end;
+  text-align: right;
+}
+
+.chatbot-input {
+  display: flex;
+  border-top: 1px solid #00ffe0;
+}
+
+.chatbot-input input {
+  flex: 1;
+  padding: 10px;
+  border: none;
+  background: #111;
+  color: #fff;
+}
+
+.chatbot-input button {
+  padding: 0 15px;
+  background: #00ffe0;
+  border: none;
+  color: #000;
+  font-weight: bold;
+  cursor: pointer;
+}
+.about-containers {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  padding: 1rem;
+  justify-items: center;
+}
+.project-img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 10px;
+  border: 2px solid #00ffe030;
+}
+
+.details-container {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(8px);
+  border-radius: 12px;
+  padding: 1.5rem;
+  width: 100%;
+  max-width: 300px;
+  height: 100%;
+  box-shadow: 0 0 15px #00ffe040;
+  transition: transform 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.details-container:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 20px #00ffe0;
+}
+
+/* Typing dots */
+.typing {
+  display: inline-block;
+}
+.typing span {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  margin: 0 1px;
+  background: #00ffe0;
+  border-radius: 50%;
+  animation: blink 1s infinite;
+}
+.typing span:nth-child(2) { animation-delay: 0.2s; }
+.typing span:nth-child(3) { animation-delay: 0.4s; }
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+
+  </style>
+</head>
+<body>
+
+  <!-- Hero Section -->
+  <header class="hero" id="hero">
+    <div class="container">
+      <h1 class="glow">MD.AZAZ AHAMED</h1>
+      <p class="animated-text">YO YO YO<span class="typed-text"></span><span class="cursor">|</span></p>
+
+    </div>
+  </header>
+
+  <!-- About Section -->
+  <section class="about" id="about">
+    <h2>About Me</h2>
+    <div class="about-content">
+      <img src="assets/img/avatar.png" alt="Azaz Photo">
+      <p>Hello! I'm a developer with a passion for building futuristic web experiences using JavaScript, AI, and animation.</p>
+    </div>
+  </section>
+
+  <!-- Projects Section -->
+<section class="projects" id="projects">
+  <h2>Projects</h2>
+  <div class="experience-details-container">
+    <div class="about-containers">
+
+      <!-- Project 1 -->
+      <div class="details-container color-container">
+        <div class="article-container">
+          <img
+            src="./assets/project-1.png"
+            alt="Project 1"
+            class="project-img"
+          />
+        </div>
+        <h2 class="experience-sub-title project-title">Online Store</h2>
+        <div class="btn-container">
+          <button
+            class="btn btn-color-2 project-btn"
+            onclick="location.href='https://github.com/MD-AZAZ-AHAMED/Online-Store-E-commerce-Responsive-Website-Using-HTML-CSS'">
+            GitHub
+          </button>
+          <button
+            class="btn btn-color-1 project-btn"
+            onclick="location.href='https://your-live-demo-link.com'">
+            Live Demo
+          </button>
+        </div>
+      </div>
+
+      <!-- Project 2 -->
+      <div class="details-container color-container">
+        <div class="article-container">
+          <img
+            src="./assets/project-2.png"
+            alt="Project 2"
+            class="project-img"
+          />
+        </div>
+        <h2 class="experience-sub-title project-title">Chatbot Interface</h2>
+        <div class="btn-container">
+          <button
+            class="btn btn-color-2 project-btn"
+            onclick="location.href='https://github.com/MD-AZAZ-AHAMED/AI-Chatbot-Web-UI'">
+            GitHub
+          </button>
+          <button
+            class="btn btn-color-1 project-btn"
+            onclick="location.href='https://your-demo-link.com'">
+            Live Demo
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+  <!-- Skills Section -->
+  <section class="skills" id="skills">
+    <h2>Skills</h2>
+    <div class="skills-list">
+      <div class="skill"><span>JavaScript</span><div class="bar js"></div></div>
+      <div class="skill"><span>HTML/CSS</span><div class="bar html"></div></div>
+      <div class="skill"><span>GSAP</span><div class="bar gsap"></div></div>
+      <div class="skill"><span>OpenAI API</span><div class="bar api"></div></div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section class="contact" id="contact">
+    <h2>Contact</h2>
+    <form>
+      <input type="text" placeholder="Your Name" required>
+      <input type="email" placeholder="Your Email" required>
+      <textarea placeholder="Your Message" required></textarea>
+      <button type="submit">Send</button>
+    </form>
+  </section>
+
+  <!-- Floating Chatbot Button -->
+  <div class="chatbot-button" id="chatbotToggle">
+    🤖
+  </div>
+  <a href="#projects" onclick="scrollToSection('#projects')">View Projects</a>
+  <!-- Chatbot Panel -->
+<div class="chatbot-panel" id="chatbotPanel">
+  <div class="chatbot-header">
+    <span>🤖 Azaz AI Assistant</span>
+    <button id="closeChatbot">✖</button>
+  </div>
+  <div class="chatbot-body" id="chatbotBody">
+    <div class="bot-message">Hi there! Ask me anything or type "show projects", "skills", or "contact".</div>
+  </div>
+  <div class="chatbot-input">
+    <input type="text" id="userInput" placeholder="Type your message..." />
+    <button id="sendMessage">➤</button>
+  </div>
+</div>
+
+</body>
+<!-- GSAP CDN -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollToPlugin.min.js"></script>
+
+<!-- Your custom JS -->
+
+
+
+</html>
