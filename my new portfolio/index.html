@@ -1,13 +1,14 @@
-<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>MD.AZAZ AHAMED | AI Portfolio</title>
-  <link rel="stylesheet" href="css/styles.css" />
-  <script src="js/chatbot.js"></script>
-  <script src="js/main.js"></script>
+  <link rel="stylesheet" href="styles.css" />
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+  <!-- GSAP CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollToPlugin.min.js"></script>
   <style>
     /* Reset */
 * {
@@ -17,12 +18,13 @@
 }
 
 body {
-  font-family: 'Orbitron', sans-serif;
-  background: #0d0d2b;
-  color: #ffffff;
-  line-height: 1.6;
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+  color: #e0e0e0;
   scroll-behavior: smooth;
 }
+
 
 /* Container */
 .container {
@@ -39,21 +41,156 @@ h2 {
   color: #00ffe0;
 }
 
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Orbitron', sans-serif;
+      color: #00f0ff;
+      background: rgb(21, 27, 46);
+      overflow-x: hidden;
+    }
+    .hero {
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 50px;
+      background: linear-gradient(to bottom, #000000, #000000);
+      position: relative;
+    }
+    .glitch-text {
+      font-size: 3.5rem;
+      position: relative;
+      color: #00f0ff;
+      text-shadow: 0 0 2px #00f0ff;
+    }
+    .glitch-text::before, .glitch-text::after {
+      content: attr(data-text);
+      position: absolute;
+      left: 0;
+      width: 100%;
+      overflow: hidden;
+    }
+    .glitch-text::before {
+      animation: glitchTop 1.5s infinite linear;
+      top: -2px;
+      color: #d865bf;
+    }
+    .glitch-text::after {
+      animation: glitchBottom 1.5s infinite linear;
+      bottom: -2px;
+      color: #00ff9c;
+    }
+    @keyframes glitchTop {
+      0% { clip-path: inset(0 0 90% 0); }
+      50% { clip-path: inset(0 0 10% 0); transform: translateX(-2px); }
+      100% { clip-path: inset(0 0 90% 0); }
+    }
+    @keyframes glitchBottom {
+      0% { clip-path: inset(90% 0 0 0); }
+      50% { clip-path: inset(10% 0 0 0); transform: translateX(2px); }
+      100% { clip-path: inset(90% 0 0 0); }
+    }
+    .hero-content {
+      max-width: 50%;
+    }
+    .hero-animation img {
+      width: 400px;
+      animation: rotatePlanet 10s linear infinite;
+    }
+    @keyframes rotatePlanet {
+      from { transform: rotateY(0deg); }
+      to { transform: rotateY(360deg); }
+    }
+    .neon-grid {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 300px;
+      background: repeating-linear-gradient(
+        to right,
+        rgba(0, 240, 255, 0.1) 0 1px,
+        transparent 1px 30px
+      ),
+      repeating-linear-gradient(
+        to top,
+        rgba(0, 240, 255, 0.1) 0 1px,
+        transparent 1px 30px
+      );
+      background-size: 100% 100%;
+      z-index: 0;
+    }
 /* Hero */
+/*
 .hero {
   height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
+  background: radial-gradient(circle at top left, rgba(140, 255, 212, 0.08), transparent 60%),
+              radial-gradient(circle at bottom right, rgba(255, 0, 255, 0.04), transparent 70%),
+              linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+  padding: 2rem;
   text-align: center;
-  background: url('../assets/img/hero-bg.png') center/cover no-repeat;
   position: relative;
+  overflow: hidden;
 }
 
+.hero-content {
+  max-width: 700px;
+  color: #e0e0e0;
+  font-family: 'Poppins', sans-serif;
+}
+
+.hero-greeting {
+  font-size: 1.2rem;
+  color: #8fffd4;
+  font-family: monospace;
+  margin-bottom: 1rem;
+  opacity: 0;
+}
+
+.hero-title {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  line-height: 1.3;
+}
+
+.hero-title .highlight {
+  color: #8fffd4;
+  text-shadow: 0 0 10px rgba(140, 255, 212, 0.4);
+}
+
+.hero-description {
+  font-size: 1.1rem;
+  margin-bottom: 2rem;
+  color: #c1f8ff;
+}
+
+.hero-btn {
+  background: #8fffd4;
+  color: #000;
+  padding: 0.8rem 2rem;
+  border-radius: 10px;
+  font-weight: bold;
+  text-decoration: none;
+  box-shadow: 0 0 15px rgba(140, 255, 212, 0.4);
+  transition: background 0.3s;
+}
+
+.hero-btn:hover {
+  background: #6df2c3;
+  color: #000;
+}
+*/
 .glow {
   font-size: 3rem;
-  color: #00ffe0;
-  text-shadow: 0 0 10px #00ffe0, 0 0 20px #00ffe0;
+  color: #e8ddddb5;
+  text-shadow: 0 0 10px #3fa094, 0 0 20px #5e8d88;
 }
 
 .animated-text {
@@ -139,38 +276,41 @@ h2 {
   border-radius: 10px;
 }
 
-/* Skills */
-.skills {
-  padding: 4rem 2rem;
-}
+    .skills {
+      padding: 4rem 2rem;
+      background: rgba(255, 255, 255, 0.02);
+      backdrop-filter: blur(6px);
+      border-radius: 12px;
+      max-width: 800px;
+      margin: 0 auto;
+      color: #e0e0e0;
+    }
 
-.skills-list {
-  max-width: 600px;
-  margin: auto;
-}
+    .skills h2 {
+      text-align: center;
+      font-size: 2rem;
+      color: #78b39c;
+      margin-bottom: 2rem;
+    }
 
-.skill {
-  margin-bottom: 1rem;
-}
+    .skills-list .skill {
+      margin-bottom: 1.5rem;
+    }
 
-.skill span {
-  display: block;
-  margin-bottom: 0.3rem;
-  color: #00ffe0;
-}
+    .skills-list span {
+      display: inline-block;
+      margin-bottom: 0.4rem;
+      font-weight: 500;
+      color: #8fffd4;
+    }
 
-.bar {
-  height: 10px;
-  background: #222;
-  border-radius: 5px;
-  overflow: hidden;
-}
-
-.bar::after {
-  content: '';
-  display: block;
-  height: 100%;
-  background: linear-gradient(to right, #00ffe0, #ff00c8);
+    .bar {
+      height: 14px;
+      width: 0%;
+      border-radius: 10px;
+      background: linear-gradient(90deg, #8fffd4, #6df2c3);
+      box-shadow: 0 0 10px rgba(140, 255, 212, 0.5);
+    }
   width: 80%;
   animation: growBar 1.2s ease forwards;
 }
@@ -241,7 +381,25 @@ h2 {
 
 .chatbot-button:hover {
   transform: scale(1.1);
+}.banner-btn {
+  display: inline-block;
+  margin-top: 1rem;
+  padding: 0.75rem 1.5rem;
+  font-weight: bold;
+  background: #00ffe0;
+  color: #000;
+  border-radius: 10px;
+  text-decoration: none;
+  transition: 0.3s ease;
+  box-shadow: 0 0 10px #00ffe060;
 }
+
+.banner-btn:hover {
+  background: #00ccaa;
+  color: #fff;
+  box-shadow: 0 0 15px #00ffe0;
+}
+
 
 .animated-text {
   font-size: 1.4rem;
@@ -399,19 +557,76 @@ h2 {
   to { opacity: 1; transform: translateY(0); }
 }
 
+.btn-color-1 {
+  background: var(--accent);
+  color: #000;
+  box-shadow: 0 0 12px var(--accent-glow);
+}
+
+.btn-color-1:hover {
+  background: #6df2c3;
+  color: #000;
+}
+
+.btn-color-2 {
+  background: var(--button-bg);
+  border: 1px solid var(--accent);
+  color: var(--accent);
+}
+
+.btn-color-2:hover {
+  background: var(--accent);
+  color: #000;
+}
+
+.details-container {
+  box-shadow: 0 0 20px rgba(140, 255, 212, 0.1);
+  border: 1px solid rgba(140, 255, 212, 0.3);
+  background: rgba(255, 255, 255, 0.03);
+}
+.hero {
+  background: radial-gradient(circle at top left, rgba(140, 255, 212, 0.08), transparent 60%),
+              radial-gradient(circle at bottom right, rgba(255, 0, 255, 0.04), transparent 70%),
+              linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+  background-blend-mode: overlay;
+}
+.typing span {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  margin: 0 2px;
+  background: #999;
+  border-radius: 50%;
+  animation: bounce 1.3s infinite ease-in-out;
+}
+.typing span:nth-child(2) { animation-delay: 0.2s; }
+.typing span:nth-child(3) { animation-delay: 0.4s; }
+
+@keyframes bounce {
+  0%, 80%, 100% { transform: scale(0); }
+  40% { transform: scale(1); }
+}
 
   </style>
 </head>
 <body>
+  
 
   <!-- Hero Section -->
-  <header class="hero" id="hero">
-    <div class="container">
-      <h1 class="glow">MD.AZAZ AHAMED</h1>
-      <p class="animated-text">YO YO YO<span class="typed-text"></span><span class="cursor">|</span></p>
+   <a href="banners.html" class="banner-btn">🎬 My Banners</a>
 
+  <section class="hero">
+    <div class="hero-content">
+      <h1 class="glitch-text" data-text="Azaz the Coder">Azaz the Coder</h1>
+      <h2>Crafting Futuristic Interfaces with AI Power ⚡</h2>
     </div>
-  </header>
+    <div class="hero-animation">
+      <img src="assets/globe.png" alt="3D AI Planet">
+    </div>
+    <div class="neon-grid"></div>
+  </section>
+
+
 
   <!-- About Section -->
 <section class="about" id="about">
@@ -496,15 +711,15 @@ h2 {
 
 
   <!-- Skills Section -->
-  <section class="skills" id="skills">
-    <h2>Skills</h2>
-    <div class="skills-list">
-      <div class="skill"><span>JavaScript</span><div class="bar js"></div></div>
-      <div class="skill"><span>HTML/CSS</span><div class="bar html"></div></div>
-      <div class="skill"><span>GSAP</span><div class="bar gsap"></div></div>
-      <div class="skill"><span>OpenAI API</span><div class="bar api"></div></div>
-    </div>
-  </section>
+<section class="skills" id="skills">
+  <h2>Skills</h2>
+  <div class="skills-list">
+    <div class="skill"><span>JavaScript</span><div class="bar js"></div></div>
+    <div class="skill"><span>HTML/CSS</span><div class="bar html"></div></div>
+    <div class="skill"><span>GSAP</span><div class="bar gsap"></div></div>
+    <div class="skill"><span>OpenAI API</span><div class="bar api"></div></div>
+  </div>
+</section>
 
   <!-- Contact Section -->
   <section class="contact" id="contact">
@@ -539,12 +754,79 @@ h2 {
 
 </body>
 <!-- GSAP CDN -->
+<!-- GSAP CDN -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollToPlugin.min.js"></script>
 
 <!-- Your custom JS -->
+<script src="main.js"></script>
 
+<!-- Your custom JS -->
+<script>
+  window.addEventListener("DOMContentLoaded", function () {
+    gsap.registerPlugin(ScrollTrigger);
+
+    const skillWidths = {
+      js: "90%",
+      html: "95%",
+      gsap: "80%",
+      api: "75%"
+    };
+
+    Object.keys(skillWidths).forEach(skill => {
+      ScrollTrigger.create({
+        trigger: ".skills",
+        duration:2,
+        start: "top 80%",
+        once: true,
+        onEnter: () => {
+          gsap.to(`.bar.${skill}`, {
+            width: skillWidths[skill],
+            duration: 1.5,
+            ease: "power2.in"
+           
+          });
+        }
+      });
+    });
+  });
+</script>
+
+  <script>
+    // GSAP Scroll Effect
+    gsap.registerPlugin(ScrollTrigger);
+    gsap.from(".hero-content h1", {
+      opacity: 0,
+      y: 50,
+      duration: 1,
+      ease: "power3.out",
+      scrollTrigger: {
+        trigger: ".hero",
+        start: "top center"
+      }
+    });
+
+    gsap.from(".hero-content h2", {
+      opacity: 0,
+      x: -100,
+      duration: 1.2,
+      delay: 0.3,
+      ease: "power2.out",
+      scrollTrigger: {
+        trigger: ".hero",
+        start: "top center"
+      }
+    });
+
+    gsap.to(".hero-animation img", {
+      scale: 1.05,
+      duration: 2,
+      yoyo: true,
+      repeat: -1,
+      ease: "sine.inOut"
+    });
+  </script>
 
 
 </html>
