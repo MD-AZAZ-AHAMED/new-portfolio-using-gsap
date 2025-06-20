@@ -1,3 +1,7 @@
+ src="https://unpkg.com/gsap@3.12.2/dist/gsap.min.js"
+ src="https://unpkg.com/gsap@3.12.2/dist/TextPlugin.min.js"
+
+
 // Register plugins
 gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 
@@ -40,6 +44,37 @@ function deletePhrase() {
 
 typePhrase();
 
+gsap.to(".hero-greeting", {
+  opacity: 1,
+  text: "> Booting AI Interface...",
+  duration: 2,
+  delay: 0.5,
+  ease: "none"
+});
+
+gsap.from(".hero-title", {
+  y: 50,
+  opacity: 0,
+  duration: 1,
+  delay: 2,
+  ease: "power2.out"
+});
+
+gsap.from(".hero-description", {
+  y: 20,
+  opacity: 0,
+  duration: 1,
+  delay: 2.5,
+  ease: "power2.out"
+});
+
+gsap.from(".hero-btn", {
+  scale: 0.9,
+  opacity: 0,
+  duration: 0.8,
+  delay: 3,
+  ease: "back.out(1.7)"
+});
 
 // Scroll animations
 gsap.utils.toArray("section").forEach((section, i) => {
@@ -91,3 +126,32 @@ gsap.from(".about-text", {
   duration: 1,
   delay: 0.3
 });
+
+gsap.registerPlugin(ScrollTrigger);
+
+// Utility function to animate skill bars
+const animateSkills = () => {
+  const skillWidths = {
+    js: "90%",
+    html: "95%",
+    gsap: "85%",
+    api: "75%",
+  };
+
+  Object.keys(skillWidths).forEach(skill => {
+    gsap.to(`.bar.${skill}`, {
+      scrollTrigger: {
+        trigger: ".skills",
+        start: "top 80%",
+        toggleActions: "play none none none"
+      },
+      width: skillWidths[skill],
+      duration: 1.5,
+      ease: "power2.out",
+      delay: 0.2
+    });
+  });
+};
+
+// Call the function after page load
+window.addEventListener("DOMContentLoaded", animateSkills);
