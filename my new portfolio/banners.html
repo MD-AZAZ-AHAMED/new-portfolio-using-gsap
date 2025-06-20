@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>My GSAP Banners</title>
+  <link rel="stylesheet" href="css/styles.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500&display=swap" rel="stylesheet">
+  <style>
+  .banners-page {
+  background: #000;
+  color: #fff;
+  font-family: 'Poppins', sans-serif;
+  padding: 2rem;
+}
+
+.banner-title {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 2rem;
+  color: #00ffe0;
+}
+
+.banner-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 2rem;
+  padding: 1rem;
+}
+
+.banner-card {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid #00ffe030;
+  border-radius: 12px;
+  padding: 1rem;
+  text-align: center;
+  box-shadow: 0 0 10px #00ffe040;
+}
+
+.banner-card iframe {
+  width: 100%;
+  height: 200px;
+  border-radius: 10px;
+  border: none;
+}
+</style>
+
+</head>
+<body class="banners-page">
+  <header>
+    <h1 class="banner-title">🎬 My GSAP Banner Projects</h1>
+    <a href="index.html" class="banner-btn">← Back to Portfolio</a>
+  </header>
+
+  <section class="banner-grid">
+    <!-- Project 1 -->
+    <div class="banner-card">
+      <iframe src="banners/banner1.html" frameborder="0"></iframe>
+      <p>Animated Splash Banner</p>
+    </div>
+
+    <!-- Project 2 -->
+    <div class="banner-card">
+      <iframe src="banners/banner2.html" frameborder="0"></iframe>
+      <p>GSAP Reveal Effect</p>
+    </div>
+
+    <!-- Add more here -->
+  </section>
+
+</body>
+</html>
