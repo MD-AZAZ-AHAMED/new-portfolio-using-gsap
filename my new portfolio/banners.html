@@ -7,11 +7,11 @@
   <link rel="stylesheet" href="css/styles.css" />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500&display=swap" rel="stylesheet">
   <style>
-  .banners-page {
+.banners-page {
   background: #000;
   color: #fff;
   font-family: 'Poppins', sans-serif;
-  padding: 2rem;
+  padding: 1rem;
 }
 
 .banner-title {
@@ -23,7 +23,7 @@
 
 .banner-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
   gap: 2rem;
   padding: 1rem;
 }
@@ -32,41 +32,69 @@
   background: rgba(255, 255, 255, 0.04);
   border: 1px solid #00ffe030;
   border-radius: 12px;
-  padding: 1rem;
-  text-align: center;
   box-shadow: 0 0 10px #00ffe040;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
 }
 
 .banner-card iframe {
   width: 100%;
-  height: 200px;
-  border-radius: 10px;
+  aspect-ratio: 16 / 9; /* Responsive, full preview */
   border: none;
+  display: block;
 }
+
+.banner-card p {
+  padding: 0.8rem;
+  text-align: center;
+  margin: 0;
+  font-weight: 500;
+  color: #00ffe0;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.banner-card button {
+  margin: 0.5rem auto 1rem;
+  padding: 0.5rem 1.2rem;
+  border: none;
+  background: #00ffe0;
+  color: #000;
+  font-weight: bold;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.banner-card button:hover {
+  background: #00ccaa;
+  color: #fff;
+}
+
+
 </style>
 
 </head>
 <body class="banners-page">
-  <header>
-    <h1 class="banner-title">🎬 My GSAP Banner Projects</h1>
-    <a href="index.html" class="banner-btn">← Back to Portfolio</a>
-  </header>
+<section class="banner-grid">
+  <!-- Banner 1 -->
+<div class="banner-card">
+  <iframe id="banner1" src="about:blank" frameborder="0"></iframe>
+  <p>Animated Splash Banner</p>
+  <button onclick="document.getElementById('banner1').src='https://md-azaz-ahamed.github.io/4Background_gsap/'">
+    ▶️ Start
+  </button>
+</div>
 
-  <section class="banner-grid">
-    <!-- Project 1 -->
-    <div class="banner-card">
-      <iframe src="banners/banner1.html" frameborder="0"></iframe>
-      <p>Animated Splash Banner</p>
-    </div>
 
-    <!-- Project 2 -->
-    <div class="banner-card">
-      <iframe src="banners/banner2.html" frameborder="0"></iframe>
-      <p>GSAP Reveal Effect</p>
-    </div>
+  <!-- Banner 2 -->
+  <div class="banner-card">
+    <iframe src="https://md-azaz-ahamed.github.io/Another_Banner/" frameborder="0"></iframe>
+    <p>GSAP Reveal Effect</p>
+  </div>
 
-    <!-- Add more here -->
-  </section>
+  <!-- Add more hosted banners here -->
+</section>
 
 </body>
 </html>
