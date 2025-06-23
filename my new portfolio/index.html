@@ -9,7 +9,12 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollToPlugin.min.js"></script>
-  <style>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.150.1/build/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.150.1/examples/js/loaders/GLTFLoader.js"></script>
+
+ 
+ <style>
+    
     /* Reset */
 * {
   margin: 0;
@@ -124,6 +129,20 @@ h2 {
       background-size: 100% 100%;
       z-index: 0;
     }
+    #astronautCanvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+}
+.hero-content {
+  position: relative;
+  z-index: 2;
+}
+
 /* Hero */
 /*
 .hero {
@@ -557,26 +576,69 @@ h2 {
   to { opacity: 1; transform: translateY(0); }
 }
 
-.btn-color-1 {
-  background: var(--accent);
-  color: #000;
-  box-shadow: 0 0 12px var(--accent-glow);
+.btn {
+  padding: 0.6rem 1.4rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  border: 1px solid transparent;
+  border-radius: 12px;
+  background: rgba(0, 255, 224, 0.07);
+  backdrop-filter: blur(12px);
+  color: #00ffe0;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  margin: 0.5rem;
+  box-shadow: 0 0 12px rgba(0, 255, 224, 0.3);
+  text-shadow: 0 0 4px #00ffe0;
 }
 
-.btn-color-1:hover {
-  background: #6df2c3;
-  color: #000;
+.btn:hover {
+  background: rgba(0, 255, 224, 0.15);
+  transform: translateY(-2px) scale(1.03);
+  box-shadow: 0 0 18px #00ffe0, 0 0 8px #00ffe055 inset;
+  color: #ffffff;
 }
 
+/* GitHub Button Style */
 .btn-color-2 {
-  background: var(--button-bg);
-  border: 1px solid var(--accent);
-  color: var(--accent);
+  border: 1px solid #00ffe0;
+  color: #00ffe0;
+  background: transparent;
 }
 
 .btn-color-2:hover {
-  background: var(--accent);
+  background: #00ffe020;
+  color: #ffffff;
+  box-shadow: 0 0 20px #00ffe0, inset 0 0 10px #00ffe0;
+}
+
+/* Live Demo Button Style */
+.btn-color-1 {
+  background: linear-gradient(135deg, #00ffe0, #6df2c3);
   color: #000;
+  border: none;
+  box-shadow: 0 0 20px #00ffe080;
+}
+
+.btn-color-1:hover {
+  background: linear-gradient(135deg, #00ffcc, #ff00c8);
+  color: #fff;
+  box-shadow: 0 0 25px #00ffe0, 0 0 12px #ff00c8;
+}
+@keyframes pulseGlow {
+  0% {
+    box-shadow: 0 0 10px #00ffe0;
+  }
+  50% {
+    box-shadow: 0 0 20px #00ffe0;
+  }
+  100% {
+    box-shadow: 0 0 10px #00ffe0;
+  }
+}
+
+.btn:hover {
+  animation: pulseGlow 1s infinite;
 }
 
 .details-container {
@@ -616,9 +678,10 @@ h2 {
    <a href="banners.html" class="banner-btn">🎬 My Banners</a>
 
   <section class="hero">
+    <canvas id="astronautCanvas"></canvas>
     <div class="hero-content">
-      <h1 class="glitch-text" data-text="Azaz the Coder">Azaz the Coder</h1>
-      <h2>Crafting Futuristic Interfaces with AI Power ⚡</h2>
+      <h1 class="glitch-text" data-text="Running: Azaz.exe">Running: Azaz.exe</h1>
+      <h2>Decoding Chaos into Clarity ⚡</h2>
     </div>
     <div class="hero-animation">
       <img src="assets/globe.png" alt="3D AI Planet">
@@ -637,15 +700,13 @@ h2 {
     </div>
     <div class="about-text">
       <p>
-        Hello! I'm <strong>Azaz Ahamed</strong>, a passionate front-end developer
-        who blends design with intelligent interactivity. I create futuristic,
-        AI-powered web experiences using <strong>JavaScript</strong>, <strong>GSAP</strong>,
-        and <strong>OpenAI</strong>.
+       Hi, I’m Azaz Ahamed — a curious mind with a creator’s heart and a problem solver’s brain. Whether it’s building systems, crafting ideas, or exploring new technologies, I thrive at the intersection of creativity and logic.
+            I believe in working smart and never stop learning. From late night coding to brainstorming ideas over coffee, I love turning ideas into things that actually do something — whether it's an app, a concept, or a better solution to an everyday problem.
+            Currently, I'm focused on expanding my skills in Web Development, Cybersecurity,Banner designing etc, with a strong interest in innovation, open-source collaboration, and meaningful impact.
+        <br/>Outside of my technical pursuits, I find deep value in reading philosophy — particularly in areas such as ethics, logic, and human behavior. This hobby not only sharpens my critical thinking but also grounds my work in a deeper understanding of responsibility, meaning, and purpose.
+        I also actively contribute to nonprofit efforts focused on education, striving to make learning accessible to every child, regardless of background or geography.
       </p>
-      <p>
-        My mission is to craft sleek, accessible, and meaningful digital interfaces
-        that feel alive and useful. I love building with animation, APIs, and modern UX.
-      </p>
+
     </div>
   </div>
 </section>
@@ -657,8 +718,84 @@ h2 {
   <div class="experience-details-container">
     <div class="about-containers">
 
-      <!-- Project 1 -->
+  
+
+
+      <!-- Project 2 -->
       <div class="details-container color-container">
+        <div class="article-container">
+          <img
+            src="./assets/project-2.png"
+            alt="Project 2"
+            class="project-img"
+          />
+        </div>
+        <h2 class="experience-sub-title project-title">TIC TAC TOE</h2>
+        <div class="btn-container">
+          <button
+            class="btn btn-color-2 project-btn"
+            onclick="location.href='https://github.com/MD-AZAZ-AHAMED/Tic-Tac-Toe-game-using-Java-Script-Css-Html'">
+            GitHub
+          </button>
+          <button
+            class="btn btn-color-1 project-btn"
+            onclick="location.href='https://md-azaz-ahamed.github.io/Tic-Tac-Toe-game-using-Java-Script-Css-Html/' ">
+            Live Demo
+          </button>
+        </div>
+      </div>
+      <!-- Project 3 -->
+
+            <div class="details-container color-container">
+        <div class="article-container">
+          <img
+            src="./assets/todolist.png"
+            alt="Project 3"
+            class="project-img"
+          />
+        </div>
+        <h2 class="experience-sub-title project-title">TO DO LIST</h2>
+        <div class="btn-container">
+          <button
+            class="btn btn-color-2 project-btn"
+            onclick="location.href='https://github.com/MD-AZAZ-AHAMED/TO-DO-LIST">
+            GitHub
+          </button>
+          <button
+            class="btn btn-color-1 project-btn"
+            onclick="location.href='https://md-azaz-ahamed.github.io/TO-DO-LIST/' ">
+            Live Demo
+          </button>
+        </div>
+      </div>
+      <!-- Project 4 -->
+      
+            <div class="details-container color-container">
+        <div class="article-container">
+          <img
+            src="./assets/payment_fraud.png"
+            alt="Project 2"
+            class="project-img"
+          />
+        </div>
+        <h2 class="experience-sub-title project-title">Fraud Detection</h2>
+        <div class="btn-container">
+          <button
+            class="btn btn-color-2 project-btn"
+            onclick="location.href='https://github.com/MD-AZAZ-AHAMED/CSE-422'">
+            GitHub
+          </button>
+          <!-- and 
+          <button
+            class="btn btn-color-1 project-btn"
+            onclick="location.href='https://md-azaz-ahamed.github.io/TO-DO-LIST/' ">
+            Live Demo
+          </button>
+          -->
+        </div>
+      </div>
+          <!-- Project should change later -->
+            <div class="details-container color-container">
         <div class="article-container">
           <img
             src="./assets/project-1.png"
@@ -675,33 +812,10 @@ h2 {
           </button>
           <button
             class="btn btn-color-1 project-btn"
-            onclick="location.href='https://your-live-demo-link.com'">
+            onclick="location.href='https://md-azaz-ahamed.github.io/Online-Store-E-commerce-Responsive-Website-Using-HTML-CSS/#T/' ">
             Live Demo
           </button>
-        </div>
-      </div>
 
-      <!-- Project 2 -->
-      <div class="details-container color-container">
-        <div class="article-container">
-          <img
-            src="./assets/project-2.png"
-            alt="Project 2"
-            class="project-img"
-          />
-        </div>
-        <h2 class="experience-sub-title project-title">Chatbot Interface</h2>
-        <div class="btn-container">
-          <button
-            class="btn btn-color-2 project-btn"
-            onclick="location.href='https://github.com/MD-AZAZ-AHAMED/AI-Chatbot-Web-UI'">
-            GitHub
-          </button>
-          <button
-            class="btn btn-color-1 project-btn"
-            onclick="location.href='https://your-demo-link.com'">
-            Live Demo
-          </button>
         </div>
       </div>
 
@@ -827,6 +941,49 @@ h2 {
       ease: "sine.inOut"
     });
   </script>
+<script>
+  const canvas = document.getElementById("astronautCanvas");
+
+  const scene = new THREE.Scene();
+  const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+  const renderer = new THREE.WebGLRenderer({ canvas, alpha: true });
+  renderer.setSize(window.innerWidth, window.innerHeight);
+  renderer.setPixelRatio(window.devicePixelRatio);
+  camera.position.z = 3;
+
+  const light = new THREE.DirectionalLight(0xffffff, 2);
+  light.position.set(1, 1, 1).normalize();
+  scene.add(light);
+
+  const loader = new THREE.GLTFLoader();
+  loader.load(
+    "assets/models/drifting_astronaut.glb",
+    function (gltf) {
+      const model = gltf.scene;
+      model.scale.set(1.5, 1.5, 1.5);
+      scene.add(model);
+
+      // Animate
+      function animate() {
+        requestAnimationFrame(animate);
+        model.rotation.y += 0.005;
+        renderer.render(scene, camera);
+      }
+      animate();
+    },
+    undefined,
+    function (error) {
+      console.error("Error loading GLB model:", error);
+    }
+  );
+
+  // Handle resizing
+  window.addEventListener("resize", () => {
+    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.updateProjectionMatrix();
+    renderer.setSize(window.innerWidth, window.innerHeight);
+  });
+</script>
 
 
 </html>
